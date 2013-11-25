@@ -79,6 +79,20 @@ public class DataSet {
 				mean[i] /= total[i];
 	}
 	
+	public void GetMonthTime(int[] total, double[] mean) {
+		for (int i = 0; i < 30; i ++) {
+			total[i] = 0; mean[i] = 0;
+		}
+		for (int i = 0; i < data.size(); i ++) {
+			int mon = Util.getMonth(data.get(i).ctime);
+			total[mon] ++;
+			mean[mon] += data.get(i).views;
+		}
+		for (int i = 0; i < 30; i ++)
+			if (total[i] > 0)
+				mean[i] /= total[i];
+	}
+	
 	public void crossSplit(DataSet s1, DataSet s2) {
 		s1.data.clear();
 		s2.data.clear();
